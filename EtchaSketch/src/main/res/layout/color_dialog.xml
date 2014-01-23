@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/colorDialogLayout"
+    android:minWidth="300dp">
+
+    <TableLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_margin="100dp"
+        android:stretchColumns="1">
+
+        <TableRow android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content"
+            android:text="Transparency"
+            android:gravity="right"
+            android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content">
+            </TextView>
+            <SeekBar android:id="@+id/alphaSeekBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:max="255"
+                android:paddingLeft="10dp"
+                android:paddingRight="100dp"
+                android:progressDrawable="@drawable/etchasketch_scrubber_progress_horizontal_holo_light"
+                android:thumb="@drawable/etchasketch_scrubber_control_normal_holo">
+            </SeekBar>
+         </TableRow>
+        <TableRow android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content"
+                android:text="Light grey"
+                android:gravity="right"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content">
+            </TextView>
+            <SeekBar android:id="@+id/lightgreySeekBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:max="255"
+                android:paddingLeft="10dp"
+                android:paddingRight="100dp"
+                android:progressDrawable="@drawable/etchasketch_scrubber_progress_horizontal_holo_light"
+                android:thumb="@drawable/etchasketch_scrubber_control_normal_holo">
+            </SeekBar>
+        </TableRow>
+        <TableRow android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content"
+                android:text="Medium grey"
+                android:gravity="right"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content">
+            </TextView>
+            <SeekBar android:id="@+id/mediumgreySeekBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:max="255"
+                android:paddingLeft="10dp"
+                android:paddingRight="100dp"
+                android:progressDrawable="@drawable/etchasketch_scrubber_progress_horizontal_holo_light"
+                android:thumb="@drawable/etchasketch_scrubber_control_normal_holo">
+            </SeekBar>
+        </TableRow>
+        <TableRow android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content"
+                android:text="Dark grey"
+                android:gravity="right"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content">
+            </TextView>
+            <SeekBar android:id="@+id/darkgreySeekBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:max="255"
+                android:paddingLeft="10dp"
+                android:paddingRight="100dp"
+                android:progressDrawable="@drawable/etchasketch_scrubber_progress_horizontal_holo_light"
+                android:thumb="@drawable/etchasketch_scrubber_control_normal_holo">
+            </SeekBar>
+        </TableRow>
+</TableLayout>
+
+    <LinearLayout android:background="@android:color/white"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_margin="10dp">
+
+        <View android:id="@+id/colorView"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"></View>
+    </LinearLayout>
+
+    <Button android:id="@+id/setColorButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/setColorButton"
+        android:layout_marginTop="-100dp"
+        android:background="@drawable/etchasketch_btn_default_focused_holo_light"/>
+
+</LinearLayout>
