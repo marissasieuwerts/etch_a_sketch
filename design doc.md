@@ -23,12 +23,14 @@ The second class <b>sketchview</b> inherits from the main activity, handles all 
 	* specify transparency from transparent to completely opaque
 	* onSeekBarChangeListener to track adjustments -> setDrawingColor();
 	* sketchview class inherits these values -> getDrawingColor();
+	
 ![alt text](https://github.com/marissasieuwerts/etch_a_sketch/blob/master/menu_colors.png?raw=true "Mockup color menu, there is supposed to be a preview of the selection in the blue field")
 	
 3.	Change width of pencil (main activity class)
 	* specify line width with seekBar in a dialog
 	* onSeekBarChangeListener to track adjustments -> setLineWidth();
 	* sketchview class inherits these values -> getLineWidth();
+	
 ![alt text](https://github.com/marissasieuwerts/etch_a_sketch/blob/master/menu_linewidth.png?raw=true "Mockup width menu")
 	   
 3. Save image (sketchview class)
