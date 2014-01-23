@@ -14,6 +14,7 @@ The second class <b>sketchview</b> inherits from the main activity, handles all 
 	* draw lines onto Bitmaps: associate the view of the drawing area with a bitmap
 	(http://www.edumobile.org/android/android-beginner-tutorials/using-bitmap-class-object-to-draw-an-image/)
 	* Create methods to handle touches: touchStarted, touchChanged, touchEnded, store paths somehow and convert this into a view
+	
 ![alt text](https://github.com/marissasieuwerts/etch_a_sketch/blob/master/homescreen.png?raw=true "Mockup drawing area, still need to add buttons to bring up menu dialogs")
 	
 
@@ -22,7 +23,7 @@ The second class <b>sketchview</b> inherits from the main activity, handles all 
 	* specify transparency from transparent to completely opaque
 	* onSeekBarChangeListener to track adjustments -> setDrawingColor();
 	* sketchview class inherits these values -> getDrawingColor();
-![alt text](https://github.com/marissasieuwerts/etch_a_sketch/blob/master/menu_colors.png?raw=true "Mockup color menu")
+![alt text](https://github.com/marissasieuwerts/etch_a_sketch/blob/master/menu_colors.png?raw=true "Mockup color menu, there is supposed to be a preview of the selection in the blue field")
 	
 3.	Change width of pencil (main activity class)
 	* specify line width with seekBar in a dialog
