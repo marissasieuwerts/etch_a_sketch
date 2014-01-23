@@ -10,7 +10,7 @@ There are basically 2 main classes: the <b>main activity</b> provides the settin
 calculates changes in the devices acceleration and reacts to these events. 
 The second class <b>sketchview</b> inherits from the main activity, handles all touching events and enables the user to draw lines.
 
-- Drawing area on screen (sketchview class) 
+- <b>Drawing area on screen (sketchview class)</b>
 	* draw lines onto Bitmaps: associate the view of the drawing area with a bitmap
 	(http://www.edumobile.org/android/android-beginner-tutorials/using-bitmap-class-object-to-draw-an-image/)
 	* Create methods to handle touches: touchStarted, touchChanged, touchEnded, store paths somehow and convert this into a view
@@ -18,7 +18,7 @@ The second class <b>sketchview</b> inherits from the main activity, handles all 
 ![alt text](https://github.com/marissasieuwerts/etch_a_sketch/blob/master/homescreen.png?raw=true "Mockup drawing area, still need to add buttons to bring up menu dialogs")
 	
 
-- Change colors (main activity class) 
+- <b>Change colors (main activity class)</b>
 	* specify dark, medium and light grey components with a seekBar in a popup (dialog)
 	* specify transparency from transparent to completely opaque
 	* onSeekBarChangeListener to track adjustments -> setDrawingColor();
@@ -26,17 +26,17 @@ The second class <b>sketchview</b> inherits from the main activity, handles all 
 	
 ![alt text](https://github.com/marissasieuwerts/etch_a_sketch/blob/master/menu_colors.png?raw=true "Mockup color menu, there is supposed to be a preview of the selection in the blue field")
 	
--	Change width of pencil (main activity class) 
+-	<b>Change width of pencil (main activity class)</b>
 	* specify line width with seekBar in a dialog
 	* onSeekBarChangeListener to track adjustments -> setLineWidth();
 	* sketchview class inherits these values -> getLineWidth();
 	
 ![alt text](https://github.com/marissasieuwerts/etch_a_sketch/blob/master/menu_linewidth.png?raw=true "Mockup width menu")
 	   
-- Save image (sketchview class) 
+- <b>Save image (sketchview class)</b>
 	* copy bitmap to device's memory using OutputStream? Not sure yet
 		
-- Shake device to erase drawing (main activity class) 
+- <b>Shake device to erase drawing (main activity class)</b>
 	* use the accelerometer!
 	* Refer to the device's SensorManager
 	* create a SensorEventListener to process changes in acceleration and calculate if there is enough change in acceleration to consider this a shaking event
