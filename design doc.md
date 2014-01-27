@@ -35,6 +35,8 @@ The second class <b>sketchview</b> inherits from the main activity, handles all 
 	   
 - <b>Save image (sketchview class)</b>
 	* copy bitmap to device's memory using OutputStream? Not sure yet
+
+- <b>Load image and edit </b>
 		
 - <b>Shake device to erase drawing (main activity class)</b>
 	* use the accelerometer!
