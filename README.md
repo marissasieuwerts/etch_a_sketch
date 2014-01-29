@@ -6,20 +6,20 @@ Goal: Implement the classic 80s/90s drawing tool 'Etch a Sketch' for touch devic
 
 ###*Features:*
 
-1. Drawing area on screen
+1. <b>Drawing area on screen</b>
 	* Enable users to draw lines with onTouchListeners
 
-2. Change colors
+2. <b>Change colors</b>
 	* Since the app must implement an Etch a Sketch, no RGB!!
 	* Set opacity (transparent - completely opaque)
 	
-3.	Change width of pencil
+3.	<b>Change width of pencil</b>
 	* Enable users to adjust line width, using a dialog popup
 	   
-3. Save image
+3. <b>Save image</b>
 	* Enable users to save their drawings in the phone's image gallery
 	
-4. Shake device to erase drawing
+4. <b>Shake device to erase drawing</b>
 	* Calculate movements with sensorManager
 	
 ###*Frameworks, languages, libraries or other technologies:*
