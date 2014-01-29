@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
 
+import static java.lang.Math.abs;
+
 /*
 ** class processes touches and draws lines
  */
@@ -40,7 +42,7 @@ public class SketchView extends View {
 
     // variables to follow touch paths
     private HashMap<Integer, Path> pathMap;
-    private HashMap<Integer,Point> previousPointMap;
+    private HashMap<Integer, Point> previousPointMap;
 
     // initialize sketchview by defaults
     public SketchView(Context context, AttributeSet attrs) {
@@ -56,7 +58,7 @@ public class SketchView extends View {
         paintLine.setAntiAlias(true);
 
         // set line color darkgrey
-        paintLine.setColor(Color.DKGRAY);
+        paintLine.setColor(Color.GRAY);
 
         // set line solid
         paintLine.setStyle(Paint.Style.STROKE);
@@ -210,14 +212,18 @@ public class SketchView extends View {
                 Point point = previousPointMap.get(pointerID);
 
                 // calculate changes in movement
-                float deltaX = Math.abs(newX - point.x);
-                float deltaY = Math.abs(newY - point.y);
+                float deltaX = abs(newX - point.x);
+                float deltaY = abs(newY - point.y);
 
                 // if significant change
                 if (deltaX >= TOUCH_TOLERANCE || deltaY >= TOUCH_TOLERANCE)
                 {
                     // // update the pointer
                     path.quadTo(point.x, point.y, (newX + point.x) / 2 , (newY + point.y) / 2);
+
+                    // update coordinates (bug finally fixed!!!)
+                    point.x = (int) newX;
+                    point.y = (int) newY;
                 }
             }
         }
