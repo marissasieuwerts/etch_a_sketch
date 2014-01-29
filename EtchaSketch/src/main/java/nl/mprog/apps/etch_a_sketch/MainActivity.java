@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
     private static final int SAVE_MENU_ID = Menu.FIRST +4;
 
     // determine whether user shook the device to erase
-    private static final int ACCELERATION_TRESHOLD = 15000;
+    private static final int ACCELERATION_THRESHOLD = 15000;
 
     // dialog to display menus
     private Dialog currentDialog;
@@ -72,6 +72,13 @@ public class MainActivity extends Activity {
         enableAccelerometerListening();
     }
 
+    // when on pause, disable shaking handler
+    @Override
+    protected void onPause(){
+        super.onPause();
+        disableAccelerometerListening();
+    }
+
     // listen for accelerometer events
     private void enableAccelerometerListening() {
         // retrieve system's sensorManager service
@@ -80,12 +87,6 @@ public class MainActivity extends Activity {
         sensorManager.registerListener(sensorEventListener, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL);
     }
 
-
-    // when on pause, disable shaking handler
-    protected void OnPause(){
-        super.onPause();
-        disableAccelerometerListening();
-    }
 
     private void disableAccelerometerListening() {
         if (sensorManager != null)
@@ -119,10 +120,10 @@ public class MainActivity extends Activity {
                 currentAcceleration = x * x + y * y + z * z;
 
                 // calculate change
-                acceleration = currentAcceleration + (currentAcceleration - lastAcceleration);
+                acceleration = currentAcceleration * (currentAcceleration - lastAcceleration);
 
                 // if acceleration is above certain value, assume the user shaked the device and wants to erase his drawing (compare to constant TRESHOLD)
-                if (acceleration > ACCELERATION_TRESHOLD){
+                if (acceleration > ACCELERATION_THRESHOLD){
                     // set message to confirm
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setMessage(R.string.message_erase);

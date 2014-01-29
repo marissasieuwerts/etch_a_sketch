@@ -15,7 +15,7 @@
     <string name="menuitem_save_image">Save</string>
     <string name="title_color_dialog">Change color</string>
     <string name="title_width_dialog">Set line width</string>
-    <string name="message_saved">Drawing saved successfully!</string>
+    <string name="message_saved">Drawing has been saved in Gallery!</string>
     <string name="message_error">Couldn\'t save drawing!</string>
 
 </resources>
