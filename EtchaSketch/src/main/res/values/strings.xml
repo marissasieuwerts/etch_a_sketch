@@ -8,5 +8,14 @@
     <string name="setColorButton">Set color</string>
     <string name="message_erase">Delete</string>
     <string name="button_cancel">Cancel</string>
+    <string name="menuitem_color">Color</string>
+    <string name="menuitem_line_width">Line width</string>
+    <string name="menuitem_erase">Erase</string>
+    <string name="menuitem_clear">Clear</string>
+    <string name="menuitem_save_image">Save</string>
+    <string name="title_color_dialog">Change color</string>
+    <string name="title_width_dialog">Set line width</string>
+    <string name="message_saved">Drawing saved successfully!</string>
+    <string name="message_error">Couldn\'t save drawing!</string>
 
 </resources>

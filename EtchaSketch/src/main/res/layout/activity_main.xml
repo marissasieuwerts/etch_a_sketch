@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<nl.mprog.apps.etch_a_sketch.Sketchview
+<nl.mprog.apps.etch_a_sketch.SketchView
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/sketchView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

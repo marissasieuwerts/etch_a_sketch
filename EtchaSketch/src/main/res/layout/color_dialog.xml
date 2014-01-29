@@ -10,8 +10,8 @@
     <TableLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_margin="100dp"
-        android:stretchColumns="1">
+        android:stretchColumns="1"
+        android:layout_marginTop="15dp">
 
         <TableRow android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -22,12 +22,11 @@
             android:layout_gravity="center_vertical"
                 android:layout_height="wrap_content">
             </TextView>
-            <SeekBar android:id="@+id/alphaSeekBar"
+            <SeekBar android:id="@+id/transparencySeekBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:max="255"
-                android:paddingLeft="10dp"
-                android:paddingRight="100dp"
+                android:paddingLeft="15dp"
                 android:progressDrawable="@drawable/etchasketch_scrubber_progress_horizontal_holo_light"
                 android:thumb="@drawable/etchasketch_scrubber_control_normal_holo">
             </SeekBar>
@@ -36,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
             <TextView android:layout_width="wrap_content"
-                android:text="Light grey"
+                android:text="Blue"
                 android:gravity="right"
                 android:layout_gravity="center_vertical"
                 android:layout_height="wrap_content">
@@ -45,8 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:max="255"
-                android:paddingLeft="10dp"
-                android:paddingRight="100dp"
+                android:paddingLeft="15dp"
                 android:progressDrawable="@drawable/etchasketch_scrubber_progress_horizontal_holo_light"
                 android:thumb="@drawable/etchasketch_scrubber_control_normal_holo">
             </SeekBar>
@@ -55,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView android:layout_width="wrap_content"
-                android:text="Medium grey"
+                android:text="Green"
                 android:gravity="right"
                 android:layout_gravity="center_vertical"
                 android:layout_height="wrap_content">
@@ -64,8 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:max="255"
-                android:paddingLeft="10dp"
-                android:paddingRight="100dp"
+                android:paddingLeft="15dp"
                 android:progressDrawable="@drawable/etchasketch_scrubber_progress_horizontal_holo_light"
                 android:thumb="@drawable/etchasketch_scrubber_control_normal_holo">
             </SeekBar>
@@ -74,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView android:layout_width="wrap_content"
-                android:text="Dark grey"
+                android:text="Red"
                 android:gravity="right"
                 android:layout_gravity="center_vertical"
                 android:layout_height="wrap_content">
@@ -83,30 +80,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:max="255"
-                android:paddingLeft="10dp"
-                android:paddingRight="100dp"
+                android:paddingLeft="15dp"
                 android:progressDrawable="@drawable/etchasketch_scrubber_progress_horizontal_holo_light"
                 android:thumb="@drawable/etchasketch_scrubber_control_normal_holo">
             </SeekBar>
         </TableRow>
-</TableLayout>
 
-    <LinearLayout android:background="@android:color/white"
-        android:layout_height="match_parent"
-        android:layout_width="wrap_content"
-        android:layout_margin="10dp">
+        <LinearLayout>
+           <View android:id="@+id/colorView"
+                android:layout_width="match_parent"
+               android:layout_marginTop="15dp"
+               android:layout_height="30dp"></View>
+        </LinearLayout>
 
-        <View android:id="@+id/colorView"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"></View>
-    </LinearLayout>
+    </TableLayout>
 
     <Button android:id="@+id/setColorButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:text="@string/setColorButton"
-        android:layout_marginTop="-100dp"
+        android:layout_below="@+id/colorView"
+        android:layout_marginTop="15dp"
         android:background="@drawable/etchasketch_btn_default_focused_holo_light"/>
 
 </LinearLayout>
