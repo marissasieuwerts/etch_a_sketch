@@ -35,12 +35,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
             <TextView android:layout_width="wrap_content"
-                android:text="Blue"
+                android:text="Red"
                 android:gravity="right"
                 android:layout_gravity="center_vertical"
                 android:layout_height="wrap_content">
             </TextView>
-            <SeekBar android:id="@+id/lightgreySeekBar"
+            <SeekBar android:id="@+id/blueSeekBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:max="255"
@@ -58,7 +58,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_height="wrap_content">
             </TextView>
-            <SeekBar android:id="@+id/mediumgreySeekBar"
+            <SeekBar android:id="@+id/greenSeekBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:max="255"
@@ -71,12 +71,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView android:layout_width="wrap_content"
-                android:text="Red"
+                android:text="Blue"
                 android:gravity="right"
                 android:layout_gravity="center_vertical"
                 android:layout_height="wrap_content">
             </TextView>
-            <SeekBar android:id="@+id/darkgreySeekBar"
+            <SeekBar android:id="@+id/redSeekBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:max="255"

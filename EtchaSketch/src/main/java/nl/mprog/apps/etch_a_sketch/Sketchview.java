@@ -22,6 +22,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 
 import static java.lang.Math.abs;
+import static java.lang.System.currentTimeMillis;
 
 /*
 ** class processes touches and draws lines
@@ -240,12 +241,12 @@ public class SketchView extends View {
 
     public void saveImage(){
         // set a file name
-        String fileName = "ETCH_A_SKETCH" + System.currentTimeMillis();
+        String fileName = "ETCH_A_SKETCH" + currentTimeMillis();
 
         // configure new image's data setting empty ContentValues (adds a key-value pair to ContentValues object)
         ContentValues values = new ContentValues();
         values.put(MediaStore.Images.Media.TITLE, fileName); // specify file name
-        values.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis()); // specify when it was saved
+        values.put(MediaStore.Images.Media.DATE_ADDED, currentTimeMillis()); // specify when it was saved
         values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpg"); // specify its type
 
         // calls its insert method to get a Uniform Resource Identifier where the image will be stored

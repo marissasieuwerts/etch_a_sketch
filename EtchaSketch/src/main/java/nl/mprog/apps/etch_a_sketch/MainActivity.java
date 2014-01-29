@@ -219,22 +219,22 @@ public class MainActivity extends Activity {
 
         // get onChangeListeners for the seekbars
         final SeekBar transparencySeekBar = (SeekBar) currentDialog.findViewById(R.id.transparencySeekBar);
-        final SeekBar darkgreySeekBar = (SeekBar) currentDialog.findViewById(R.id.darkgreySeekBar);
-        final SeekBar mediumgreySeekBar = (SeekBar) currentDialog.findViewById(R.id.mediumgreySeekBar);
-        final SeekBar lightgreySeekBar = (SeekBar) currentDialog.findViewById(R.id.lightgreySeekBar);
+        final SeekBar redSeekBar = (SeekBar) currentDialog.findViewById(R.id.redSeekBar);
+        final SeekBar blueSeekBar = (SeekBar) currentDialog.findViewById(R.id.blueSeekBar);
+        final SeekBar greenSeekBar = (SeekBar) currentDialog.findViewById(R.id.greenSeekBar);
 
         // register SeekBar event listeners
         transparencySeekBar.setOnSeekBarChangeListener(colorSeekBarChanged);
-        darkgreySeekBar.setOnSeekBarChangeListener(colorSeekBarChanged);
-        mediumgreySeekBar.setOnSeekBarChangeListener(colorSeekBarChanged);
-        lightgreySeekBar.setOnSeekBarChangeListener(colorSeekBarChanged);
+        blueSeekBar.setOnSeekBarChangeListener(colorSeekBarChanged);
+        greenSeekBar.setOnSeekBarChangeListener(colorSeekBarChanged);
+        redSeekBar.setOnSeekBarChangeListener(colorSeekBarChanged);
 
         // set values
         final int color = sketchView.getDrawingColor();
         transparencySeekBar.setProgress(Color.alpha(color));
-        darkgreySeekBar.setProgress(Color.red(color));
-        mediumgreySeekBar.setProgress(Color.green(color));
-        lightgreySeekBar.setProgress(Color.blue(color));
+        redSeekBar.setProgress(Color.red(color));
+        blueSeekBar.setProgress(Color.blue(color));
+        greenSeekBar.setProgress(Color.green(color));
 
         // set onclicklistener to select color
         Button setColorButton = (Button) currentDialog.findViewById(R.id.setColorButton);
@@ -252,15 +252,15 @@ public class MainActivity extends Activity {
         // called when the position of a SeekBar thumb changes
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             SeekBar transparencySeekBar = (SeekBar) currentDialog.findViewById(R.id.transparencySeekBar);
-            SeekBar darkgreySeekBar = (SeekBar) currentDialog.findViewById(R.id.darkgreySeekBar);
-            SeekBar mediumgreySeekBar = (SeekBar) currentDialog.findViewById(R.id.mediumgreySeekBar);
-            SeekBar lightgreySeekBar = (SeekBar) currentDialog.findViewById(R.id.lightgreySeekBar);
+            SeekBar blueSeekBar = (SeekBar) currentDialog.findViewById(R.id.blueSeekBar);
+            SeekBar greenSeekBar = (SeekBar) currentDialog.findViewById(R.id.greenSeekBar);
+            SeekBar redSeekBar = (SeekBar) currentDialog.findViewById(R.id.redSeekBar);
 
             // display current color
             View colorView = (View) currentDialog.findViewById(R.id.colorView);
 
             // update the color preview
-            colorView.setBackgroundColor(Color.argb(transparencySeekBar.getProgress(), darkgreySeekBar.getProgress(), mediumgreySeekBar.getProgress(), lightgreySeekBar.getProgress()));
+            colorView.setBackgroundColor(Color.argb(transparencySeekBar.getProgress(), blueSeekBar.getProgress(), greenSeekBar.getProgress(), redSeekBar.getProgress()));
         }
 
         @Override
@@ -281,12 +281,12 @@ public class MainActivity extends Activity {
         public void onClick(View view) {
             // get the SeekBar values
             SeekBar transparencySeekBar = (SeekBar) currentDialog.findViewById(R.id.transparencySeekBar);
-            SeekBar darkgreySeekBar = (SeekBar) currentDialog.findViewById(R.id.darkgreySeekBar);
-            SeekBar mediumgreySeekBar = (SeekBar) currentDialog.findViewById(R.id.mediumgreySeekBar);
-            SeekBar lightgreySeekBar = (SeekBar) currentDialog.findViewById(R.id.lightgreySeekBar);
+            SeekBar redSeekBar = (SeekBar) currentDialog.findViewById(R.id.redSeekBar);
+            SeekBar blueSeekBar = (SeekBar) currentDialog.findViewById(R.id.blueSeekBar);
+            SeekBar greenSeekBar = (SeekBar) currentDialog.findViewById(R.id.greenSeekBar);
 
             // set the line color
-            sketchView.setDrawingColor(Color.argb(transparencySeekBar.getProgress(), darkgreySeekBar.getProgress(), mediumgreySeekBar.getProgress(), lightgreySeekBar.getProgress()));
+            sketchView.setDrawingColor(Color.argb(transparencySeekBar.getProgress(), blueSeekBar.getProgress(), greenSeekBar.getProgress(), redSeekBar.getProgress()));
             dialogIsDisplayed.set(false);
             currentDialog.dismiss();
             currentDialog = null;
