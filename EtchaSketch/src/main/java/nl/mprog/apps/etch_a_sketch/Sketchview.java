@@ -28,13 +28,14 @@ import static java.lang.System.currentTimeMillis;
 ** class processes touches and draws lines
  */
 
-public class SketchView extends View {
+public class SketchView extends View
+{
 
     private static final float TOUCH_TOLERANCE = 10;
 
     // variables to create drawing area
-    private Bitmap bitmap;
-    private Canvas bitmapCanvas;
+    public Bitmap bitmap;
+    public Canvas bitmapCanvas;
 
     // variables to draw lines
     private Paint paintScreen;
@@ -45,8 +46,11 @@ public class SketchView extends View {
     private HashMap<Integer, Path> pathMap;
     private HashMap<Integer, Point> previousPointMap;
 
+    public Load load;
+
     // initialize sketchview by defaults
-    public SketchView(Context context, AttributeSet attrs) {
+    public SketchView(Context context, AttributeSet attrs)
+    {
         super(context, attrs);
 
         // display bitmap on screen
@@ -78,7 +82,8 @@ public class SketchView extends View {
 
     // display bitmap and canvas when added to Activity's view
     @Override
-    public void onSizeChanged(int w, int h, int oldW, int oldH){
+    public void onSizeChanged(int w, int h, int oldW, int oldH)
+    {
         // create a bitmap of specified width and height
         bitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
         // draw directly onto the bitmap
@@ -90,7 +95,8 @@ public class SketchView extends View {
     // define methods called in MainActivity
 
     // empties pathMap and previousPointmap
-    public void clear(){
+    public void clear()
+    {
 
         // remove paths
         pathMap.clear();
@@ -101,28 +107,33 @@ public class SketchView extends View {
     }
 
     // set the painted line's color
-    public void setDrawingColor(int color){
+    public void setDrawingColor(int color)
+    {
         paintLine.setColor(color);
     }
 
     // return the chosen color
-    public int getDrawingColor(){
+    public int getDrawingColor()
+    {
         return paintLine.getColor();
     }
 
     // set line width
-    public void setLineWidth(int width){
+    public void setLineWidth(int width)
+    {
         paintLine.setStrokeWidth(width);
     }
 
     // return line width
-    public int getLineWidth(){
+    public int getLineWidth()
+    {
         return (int) paintLine.getStrokeWidth();
     }
 
     // redraw the view
     @Override
-    protected void onDraw(Canvas canvas){
+    public void onDraw(Canvas canvas)
+    {
         // call drawBitmap method
         canvas.drawBitmap(bitmap, 0, 0, paintScreen);
 
@@ -134,7 +145,8 @@ public class SketchView extends View {
 
     // called when the View receives a touch event
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(MotionEvent event)
+    {
 
         // get pointer ID, used to locate corresponding Path objects
         int action = event.getActionMasked();
@@ -143,19 +155,22 @@ public class SketchView extends View {
 
 
         // the user touched the screen with a new finger
-        if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN){
+        if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN)
+        {
             // store initial coordinates of the touch
             touchStarted(event.getX(actionIndex), event.getY(actionIndex), event.getPointerId(actionIndex));
         }
 
         // the user removed a finger from the screen
-        else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_POINTER_UP){
+        else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_POINTER_UP)
+        {
             // draw the complete path to the bitmap
             touchEnded(event.getPointerId(actionIndex));
         }
 
         // draw the lines
-        else{
+        else
+        {
             touchMoved(event);
         }
 
@@ -165,7 +180,8 @@ public class SketchView extends View {
     }
 
     // called when a finger first touches the screen
-    private void touchStarted(float x, float y, int lineID) {
+    private void touchStarted(float x, float y, int lineID)
+    {
 
         // store path for the given touch ID
         Path path;
@@ -173,14 +189,16 @@ public class SketchView extends View {
         Point point;
 
         // if a path already exists, clear existing point
-        if(pathMap.containsKey(lineID)){
+        if(pathMap.containsKey(lineID))
+        {
             path = pathMap.get(lineID);
             path.reset();
             point = previousPointMap.get(lineID);
         }
 
         // create a new path and add to pathMap
-        else{
+        else
+        {
             path = new Path();
             pathMap.put(lineID, path);
             point = new Point();
@@ -195,7 +213,8 @@ public class SketchView extends View {
     }
 
     // called when user moves fingers across the screen
-    private void touchMoved(MotionEvent event) {
+    private void touchMoved(MotionEvent event)
+    {
         for (int i = 0; i < event.getPointerCount(); i++)
         {
             // store finger's ID and corresponding index
@@ -239,7 +258,8 @@ public class SketchView extends View {
         path.reset();
     }
 
-    public void saveImage(){
+    public void saveImage()
+    {
         // set a file name
         String fileName = "ETCH_A_SKETCH" + currentTimeMillis();
 
@@ -272,7 +292,8 @@ public class SketchView extends View {
         }
 
         // if something went wrong, show error message
-        catch (FileNotFoundException e) {
+        catch (FileNotFoundException e)
+        {
             e.printStackTrace();
 
             Toast message = Toast.makeText(getContext(), R.string.message_error, Toast.LENGTH_SHORT);
@@ -280,7 +301,8 @@ public class SketchView extends View {
             message.show();
         }
 
-        catch (IOException e) {
+        catch (IOException e)
+        {
             e.printStackTrace();
 
             Toast message = Toast.makeText(getContext(), R.string.message_error, Toast.LENGTH_SHORT);
@@ -288,5 +310,4 @@ public class SketchView extends View {
             message.show();
         }
     }
-
 }

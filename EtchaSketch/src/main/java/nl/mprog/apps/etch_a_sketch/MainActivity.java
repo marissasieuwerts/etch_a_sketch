@@ -3,18 +3,15 @@ package nl.mprog.apps.etch_a_sketch;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 import android.app.Dialog;
 import android.content.Context;
 import android.hardware.Sensor;
@@ -28,7 +25,8 @@ import android.widget.SeekBar;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity
+{
 
     // refer to sketchview class
     private SensorManager sensorManager;
@@ -46,6 +44,7 @@ public class MainActivity extends Activity {
     private static final int ERASE_MENU_ID = Menu.FIRST +2;
     private static final int CLEAR_MENU_ID = Menu.FIRST +3;
     private static final int SAVE_MENU_ID = Menu.FIRST +4;
+    private static final int LOAD_MENU_ID = Menu.FIRST +5;
 
     // determine whether user shook the device to erase
     private static final int ACCELERATION_THRESHOLD = 15000;
@@ -53,9 +52,12 @@ public class MainActivity extends Activity {
     // dialog to display menus
     private Dialog currentDialog;
 
+    public Canvas bitmapCanvas;
+    public Bitmap bitmap;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -74,13 +76,15 @@ public class MainActivity extends Activity {
 
     // when on pause, disable shaking handler
     @Override
-    protected void onPause(){
+    protected void onPause()
+    {
         super.onPause();
         disableAccelerometerListening();
     }
 
     // listen for accelerometer events
-    private void enableAccelerometerListening() {
+    private void enableAccelerometerListening()
+    {
         // retrieve system's sensorManager service
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         // register to receive accelerometer events
@@ -88,7 +92,8 @@ public class MainActivity extends Activity {
     }
 
 
-    private void disableAccelerometerListening() {
+    private void disableAccelerometerListening()
+    {
         if (sensorManager != null)
         {
             // stop listening for events
@@ -123,7 +128,8 @@ public class MainActivity extends Activity {
                 acceleration = currentAcceleration * (currentAcceleration - lastAcceleration);
 
                 // if acceleration is above certain value, assume the user shaked the device and wants to erase his drawing (compare to constant TRESHOLD)
-                if (acceleration > ACCELERATION_THRESHOLD){
+                if (acceleration > ACCELERATION_THRESHOLD)
+                {
                     // set message to confirm
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setMessage(R.string.message_erase);
@@ -161,12 +167,14 @@ public class MainActivity extends Activity {
         }
 
         @Override
-        public void onAccuracyChanged(Sensor sensor, int i) {
+        public void onAccuracyChanged(Sensor sensor, int i)
+        {
         }
     };
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         super.onCreateOptionsMenu(menu);
 
         // add options to menu
@@ -175,13 +183,15 @@ public class MainActivity extends Activity {
         menu.add(Menu.NONE, ERASE_MENU_ID, Menu.NONE, R.string.menuitem_erase);
         menu.add(Menu.NONE, CLEAR_MENU_ID, Menu.NONE, R.string.menuitem_clear);
         menu.add(Menu.NONE, SAVE_MENU_ID,  Menu.NONE, R.string.menuitem_save_image);
+        menu.add(Menu.NONE, LOAD_MENU_ID, Menu.NONE, R.string.menuitem_load);
 
         return true;
     }
 
     // When user touches a menu item
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
 
         switch(item.getItemId())
         {
@@ -205,12 +215,17 @@ public class MainActivity extends Activity {
                 // call function saveImage in sketchview class
                 sketchView.saveImage();
                 return true;
+            case LOAD_MENU_ID:
+                // call function saveImage in sketchview class
+                loadImage();
+                return true;
         }
     return super.onOptionsItemSelected(item);
     }
 
     // inflates color_dialog.xml
-    private void showColorDialog(){
+    private void showColorDialog()
+    {
         // set up a new dialog
         currentDialog = new Dialog(this);
         currentDialog.setContentView(R.layout.color_dialog);
@@ -246,11 +261,13 @@ public class MainActivity extends Activity {
     }
 
     // create a onSeekBarChangeListener for the color dialog
-   private SeekBar.OnSeekBarChangeListener colorSeekBarChanged = new SeekBar.OnSeekBarChangeListener() {
+   private SeekBar.OnSeekBarChangeListener colorSeekBarChanged = new SeekBar.OnSeekBarChangeListener()
+    {
         // respond to seekbar events registered in SeekBarChangeListeners
         @Override
         // called when the position of a SeekBar thumb changes
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
+        {
             SeekBar transparencySeekBar = (SeekBar) currentDialog.findViewById(R.id.transparencySeekBar);
             SeekBar blueSeekBar = (SeekBar) currentDialog.findViewById(R.id.blueSeekBar);
             SeekBar greenSeekBar = (SeekBar) currentDialog.findViewById(R.id.greenSeekBar);
@@ -264,21 +281,25 @@ public class MainActivity extends Activity {
         }
 
         @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
+        public void onStartTrackingTouch(SeekBar seekBar)
+        {
 
         }
 
         @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
+        public void onStopTrackingTouch(SeekBar seekBar)
+        {
 
         }
     };
 
     // set color
-    private View.OnClickListener setColorButtonListener = new View.OnClickListener(){
+    private View.OnClickListener setColorButtonListener = new View.OnClickListener()
+    {
 
         @Override
-        public void onClick(View view) {
+        public void onClick(View view)
+        {
             // get the SeekBar values
             SeekBar transparencySeekBar = (SeekBar) currentDialog.findViewById(R.id.transparencySeekBar);
             SeekBar redSeekBar = (SeekBar) currentDialog.findViewById(R.id.redSeekBar);
@@ -294,7 +315,8 @@ public class MainActivity extends Activity {
     };
 
     // set dialog to change line width
-    private void showLineWidthDialog(){
+    private void showLineWidthDialog()
+    {
         currentDialog = new Dialog(this);
         currentDialog.setContentView(R.layout.width_dialog);
         currentDialog.setTitle(R.string.title_width_dialog);
@@ -314,15 +336,16 @@ public class MainActivity extends Activity {
     }
 
     // OnSeekBarChanged listener to respond to widthseekbar events
-    private SeekBar.OnSeekBarChangeListener widthSeekBarChanged = new SeekBar.OnSeekBarChangeListener() {
-
+    private SeekBar.OnSeekBarChangeListener widthSeekBarChanged = new SeekBar.OnSeekBarChangeListener()
+    {
         // each pixel is stored on 4 bytes
         Bitmap bitmap = Bitmap.createBitmap(400, 100, Bitmap.Config.ARGB_8888);
         // canvas holds writing into the bitmap (associated with each other)
         Canvas canvas = new Canvas(bitmap);
 
         @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
+        {
             ImageView widthImageView = (ImageView) currentDialog.findViewById(R.id.widthImageView);
 
             // get current SeekBar value with a Paint object (holds style and color information)
@@ -341,21 +364,23 @@ public class MainActivity extends Activity {
         }
 
         @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-
+        public void onStartTrackingTouch(SeekBar seekBar)
+        {
         }
 
         @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-
+        public void onStopTrackingTouch(SeekBar seekBar)
+        {
         }
     };
 
     // OnClickListener to apply changes in linewidth
 
-   private View.OnClickListener setLineWidthButtonListener = new View.OnClickListener() {
+   private View.OnClickListener setLineWidthButtonListener = new View.OnClickListener()
+   {
        @Override
-       public void onClick(View v) {
+       public void onClick(View v)
+       {
            SeekBar widthSeekBar = (SeekBar) currentDialog.findViewById(R.id.widthSeekBar);
 
            // apply changes
@@ -365,4 +390,16 @@ public class MainActivity extends Activity {
            currentDialog = null;
        }
    };
+
+    // load an image from the Gallery
+    public void loadImage()
+    {
+        // go to gallery
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        intent.putExtra("bitmap", bitmap);
+        // start Activity load with intent
+        startActivity(intent);
+    }
+
 }
